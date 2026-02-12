@@ -21,7 +21,7 @@ int main() {
 
     tiempo = (double)(fin - inicio) / CLOCKS_PER_SEC;
 
-    printf("Tiempo: %f segundos\n", tiempo);
+    printf("Tiempo: %f\n", tiempo);
 
     return 0;
 }
