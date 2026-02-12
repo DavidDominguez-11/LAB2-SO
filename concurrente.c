@@ -9,37 +9,39 @@ int main() {
     clock_t inicio, fin;
     double tiempo;
 
-    inicio = clock();   // Inciso g
+    inicio = clock();
 
     pid1 = fork();
 
-    if (pid1 == 0) {  // PROCESO HIJO
+    if (pid1 == 0) {  // HIJO
 
         pid2 = fork();
 
-        if (pid2 == 0) {  // PROCESO NIETO
+        if (pid2 == 0) {  // NIETO
 
             pid3 = fork();
 
-            if (pid3 == 0) {  // PROCESO BISNIETO
+            if (pid3 == 0) {  // BISNIETO
                 for (int i = 0; i < 1000000; i++) {
+                    printf("%d\n", i);
                 }
-            } else {  // NIETO exclusivamente
+            } else {  // NIETO
                 for (int i = 0; i < 1000000; i++) {
+                    printf("%d\n", i);
                 }
-                wait(NULL);  // espera al bisnieto
+                wait(NULL);
             }
 
-        } else {  // HIJO exclusivamente
+        } else {  // HIJO
             for (int i = 0; i < 1000000; i++) {
+                printf("%d\n", i);
             }
-            wait(NULL);  // espera al nieto
+            wait(NULL);
         }
 
-    } else {  // PADRE exclusivamente
-        wait(NULL);  // espera al hijo
-
-        fin = clock();   // Inciso k
+    } else {  // PADRE
+        wait(NULL);
+        fin = clock();
 
         tiempo = (double)(fin - inicio) / CLOCKS_PER_SEC;
 
